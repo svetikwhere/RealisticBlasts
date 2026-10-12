@@ -1,0 +1,39 @@
+# Realistic Blasts — Forge 1.20.1 prototype
+
+Prototype version: `0.1.0`
+
+## What it does
+- Adds `/blasttest` (requires permission level 2 / cheats enabled).
+- Plays an explosion sound and emits a short flash, smoke, cloud-dust ring and block debris.
+- Carves a bounded, shallow bowl-shaped crater in ordinary blocks.
+- Leaves bedrock, obsidian-family blocks, portal blocks, fluids and block entities intact.
+- Keeps the effect and block-edit radius deliberately small for initial performance testing.
+
+## Build automatically with GitHub Actions (recommended)
+This project includes `.github/workflows/build.yml`. GitHub's hosted runner installs Java 17 and Gradle 8.8, then builds the mod for you.
+
+1. Sign in to GitHub and create a **new repository**. For this prototype, a public repository is the easiest option; do not add a README, license, or `.gitignore` during creation.
+2. Extract this ZIP on your Windows 10 PC.
+3. Open the new GitHub repository in your browser, choose **Add file → Upload files**, and upload the *contents* of the extracted `RealisticBlastsForge1201` folder (including the hidden `.github` folder and its `workflows/build.yml` file). Do not upload only the ZIP itself.
+4. Commit the files to the `main` branch.
+5. Open the repository's **Actions** tab. Select **Build Forge mod** and open the latest run.
+6. Wait for the run to finish. A green check means the build succeeded. In the run summary, find **Artifacts** and download `RealisticBlasts-Forge-1.20.1`.
+7. Extract the downloaded artifact ZIP. Put the `.jar` inside your Minecraft `mods` folder and launch Minecraft Java 1.20.1 with Forge 47.x.
+
+Every new commit will trigger another build. You can also start one manually from **Actions → Build Forge mod → Run workflow**.
+
+### Important: make sure `.github` is uploaded
+Some file pickers hide folders whose names start with a dot. If the workflow file is missing, GitHub will not run the build. Check that `.github/workflows/build.yml` is visible in the repository after upload.
+
+## Local requirements (only if building manually)
+- Minecraft Java 1.20.1
+- Minecraft Forge 47.x for 1.20.1
+- Java JDK 17
+- Gradle 8.8 and internet access for ForgeGradle dependencies
+
+## Test
+Create a creative test world with cheats enabled. Stand on a broad patch of dirt/stone and run:
+`/blasttest`
+
+## Prototype limitations
+This is a first gameplay prototype, not a physically accurate simulation. The crater is carved from normal blocks; loose-soil motion is represented by a capped burst of block particles rather than persistent falling block entities. Test in a backup world. Large-scale terrain deformation, custom projectiles, config options and better sound design are future steps.
